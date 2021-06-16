@@ -366,6 +366,7 @@ static void brisk_classic_window_init(BriskClassicWindow *self)
         GtkWidget *widget = NULL;
         GtkWidget *content = NULL;
         GtkWidget *scroll = NULL;
+        GdkScreen *screen = NULL;
         GtkStyleContext *style = NULL;
         BriskMenuWindow *base;
         autofree(gchar) *txt_holder = NULL;
@@ -450,6 +451,13 @@ static void brisk_classic_window_init(BriskClassicWindow *self)
         gtk_style_context_add_class(style, "view");
         gtk_style_context_add_class(style, "content-view");
         gtk_style_context_remove_class(style, "background");
+
+        /* Get visual frm GdkScreen for RGBA background support */
+        screen = gtk_widget_get_screen(widget);
+        GdkVisual *vis = gdk_screen_get_rgba_visual(screen);
+        if (vis) {
+                gtk_widget_set_visual(GTK_WIDGET(self), vis);
+        }
 
         /* Translators: This message is shown when the search results are empty */
         place_holder = g_strdup_printf("<big>%s</big>", _("Sorry, no items found"));
