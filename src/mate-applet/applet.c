@@ -140,14 +140,17 @@ static void brisk_menu_applet_init(BriskMenuApplet *self)
         image = gtk_image_new_from_icon_name("start-here-symbolic", GTK_ICON_SIZE_MENU);
         self->image = image;
         gtk_box_pack_start(GTK_BOX(layout), image, FALSE, FALSE, 0);
-        gtk_widget_set_margin_end(image, 4);
         gtk_widget_set_halign(image, GTK_ALIGN_START);
+
+        /* Update image icon_name dependent on config */
+        g_settings_bind(self->settings, "icon-name", image, "icon-name", G_SETTINGS_BIND_GET);
 
         /* Now add the label */
         label = gtk_label_new(NULL);
         self->label = label;
         gtk_box_pack_start(GTK_BOX(layout), label, TRUE, TRUE, 0);
         gtk_widget_set_margin_end(label, 4);
+        gtk_widget_set_margin_start(label, 4);
         /* Set it up for visibility toggling */
         gtk_widget_show_all(label);
         gtk_widget_set_no_show_all(label, TRUE);
@@ -431,7 +434,6 @@ static void brisk_menu_applet_adapt_layout(BriskMenuApplet *self)
                 gtk_widget_hide(self->label);
                 gtk_widget_set_halign(self->image, GTK_ALIGN_CENTER);
                 gtk_style_context_add_class(style, BRISK_STYLE_BUTTON_VERTICAL);
-                gtk_widget_set_margin_end(self->image, 0);
                 break;
         default:
                 /* We're a horizontal panel */
@@ -439,7 +441,6 @@ static void brisk_menu_applet_adapt_layout(BriskMenuApplet *self)
                                        g_settings_get_boolean(self->settings, "label-visible"));
                 gtk_widget_set_halign(self->image, GTK_ALIGN_START);
                 gtk_style_context_remove_class(style, BRISK_STYLE_BUTTON_VERTICAL);
-                gtk_widget_set_margin_end(self->image, 4);
                 break;
         }
 }

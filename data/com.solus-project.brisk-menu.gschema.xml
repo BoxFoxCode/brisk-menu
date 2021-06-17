@@ -46,15 +46,25 @@
       <summary>Keyboard shortcut</summary>
       <description>Accelerator key for opening and closing the menu.</description>
     </key>
+    <key type="s" name="icon-name">
+      <default>"start-here-symbolic"</default>
+      <summary>Icon to show in menu bar</summary>
+      <description>Set the theme icon name to use in menu bar.</description>
+    </key>
     <key type="s" name="label-text">
       <default>""</default>
       <summary>Button label text</summary>
-      <description>Change the label text for the menu button</description>
+      <description>Change the label text for the menu button.</description>
     </key>
     <key type="b" name="label-visible">
       <default>true</default>
       <summary>Button label visibility</summary>
-      <description>Control the visibility of the main button label</description>
+      <description>Control the visibility of the main button label.</description>
+    </key>
+    <key type="b" name="session-control">
+      <default>true</default>
+      <summary>Session buttons display</summary>
+      <description>Control whether to disply session control buttons.</description>
     </key>
   </schema>
 </schemalist>
