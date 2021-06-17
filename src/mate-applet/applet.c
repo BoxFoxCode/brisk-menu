@@ -142,7 +142,7 @@ static void brisk_menu_applet_init(BriskMenuApplet *self)
         gtk_box_pack_start(GTK_BOX(layout), image, FALSE, FALSE, 0);
         gtk_widget_set_halign(image, GTK_ALIGN_START);
 
-        /* Update image icon_name dependent on config */
+        /* Update image icon-name dependent on config */
         g_settings_bind(self->settings, "icon-name", image, "icon-name", G_SETTINGS_BIND_GET);
 
         /* Now add the label */
